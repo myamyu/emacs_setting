@@ -1,0 +1,16 @@
+* ここについて
+  自分のEmacsの設定です。
+  参考になりそうなものがあったらコピってもらってかまいません。
+
+* やってみたいこと
+  
+** TODO jsx-modeの導入
+   そのうちJSXを試してみたいので。
+   https://github.com/jsx/jsx-mode.el
+
+** TODO haxe-modeの導入
+   そのうちhaxeを試したいので。
+   （package-list-packagesで見つけた気がする。）
+   
+** TODO init.elを分けたいなぁ
+   
