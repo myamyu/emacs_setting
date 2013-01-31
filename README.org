@@ -12,5 +12,5 @@
    そのうちhaxeを試したいので。
    （package-list-packagesで見つけた気がする。）
    
-** TODO init.elを分けたいなぁ
+** DONE init.elを分けたいなぁ
    
