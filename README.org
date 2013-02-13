@@ -7,10 +7,14 @@
 ** TODO jsx-modeの導入
    そのうちJSXを試してみたいので。
    https://github.com/jsx/jsx-mode.el
+   入れたはいいけど挙動がなぁ。
 
 ** TODO haxe-modeの導入
    そのうちhaxeを試したいので。
    （package-list-packagesで見つけた気がする。）
    
 ** DONE init.elを分けたいなぁ
+   
+** TODO mmm-mode(HTML+PHP)はもうちょっと工夫できるんじゃないかを調べる
+
    

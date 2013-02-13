@@ -13,6 +13,12 @@
 (setq locale-coding-system 'cp932-dos)
 
 ;; ---------------------------------------------------------
+;; デフォルト設定
+;; ---------------------------------------------------------
+;; スペース4つ！
+(setq-default tab-width 4 indent-tabs-mode nil)
+
+;; ---------------------------------------------------------
 ;; パッケージ設定
 ;; ---------------------------------------------------------
 (require 'package)
@@ -35,6 +41,11 @@
 ;; ---------------------------------------------------------
 ;; server
 ;; ---------------------------------------------------------
+(add-hook 'server-visit-hook
+	  (lambda ()
+	    (set-terminal-coding-system 'utf-8)
+	    (set-keyboard-coding-system 'utf-8)
+	    ))
 (require 'server)
 (unless (server-running-p) (server-start))
 
