@@ -57,6 +57,13 @@
 (add-hook 'js2-mode-hook 'flymake-jslint-load)
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; python ---------------------------------------------------
+(defun my-python-mode-hook ()
+  (setq py-indent-offset 4)
+  (highlight-indentation-mode t)
+  (highlight-indentation-current-column-mode t))
+  
+(add-hook 'python-mode-hook 'my-python-mode-hook)
 ;; php -----------------------------------------------------
 (require 'mmm-mode)
 (setq mmm-global-mode 'maybe)
