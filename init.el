@@ -34,9 +34,81 @@
 			load-path))
 ;;(auto-install-update-emacswiki-package-name t)
 
-;; init-loader
-(require 'init-loader)
-(init-loader-load "~/.emacs.d/init-load/")
+;; ---------------------------------------------------------
+;; モードごと設定
+;; ---------------------------------------------------------
+;; auto complete --------------------------------------------
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
+(ac-config-default)
+
+;; html -----------------------------------------------------
+(defun my-html-mode-hook ()
+  (setq sgml-basic-offset 4)
+  (setq tab-width sgml-basic-offset)
+  (setq indent-tabs-mode nil))
+(add-hook 'html-mode-hook 'my-html-mode-hook)
+;; js -------------------------------------------------------
+(defun my-js2-mode-hook ()
+  (setq c-basic-offset 4)
+  (setq tab-width c-basic-offset)
+  (setq indent-tabs-mode t))
+;; jslintはnpm -gでinstallする必要があるかも
+(add-hook 'js2-mode-hook 'flymake-jslint-load)
+(add-hook 'js2-mode-hook 'my-js2-mode-hook)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; php -----------------------------------------------------
+(require 'mmm-mode)
+(setq mmm-global-mode 'maybe)
+(mmm-add-classes
+ '((html-php
+    :submode php-mode
+    :front "<\\?"
+    :back "\\?>")))
+(mmm-add-mode-ext-class nil "\\.ctp$" 'html-php)
+(add-to-list 'auto-mode-alist '("\\.ctp$" . html-mode))
+;; タブの改善
+(defun save-mmm-c-locals ()
+  (with-temp-buffer
+    (php-mode)
+    (dolist (v (buffer-local-variables))
+      (when (string-match "\\`c-" (symbol-name (car v)))
+	(add-to-list 'mmm-save-local-variables `(,(car v) nil, mmm-c-derived-modes))))))
+(save-mmm-c-locals)
+(defun my-php-mode-hook ()
+  (setq whitespace-action (quote (auto-cleanup)))
+  (setq c-basic-offset 4)
+  (setq php-basic-offset 4)
+  (setq tab-width c-basic-offset)
+  (linum-mode t)
+  (auto-complete-mode))
+(add-hook 'php-mode-hook 'flymake-php-load)
+(add-hook 'php-mode-hook 'my-php-mode-hook)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+;; coffee ---------------------------------------------------
+(defun my-coffee-mode-hook ()
+  (setq coffee-tab-width 4)
+  (setq tab-width coffee-tab-width)
+  (highlight-indentation-mode t)
+  (highlight-indentation-current-column-mode t))
+(add-hook 'coffee-mode-hook 'flymake-coffee-load)
+(add-hook 'coffee-mode-hook 'my-coffee-mode-hook)
+;; scss -----------------------------------------------------
+(defun my-scss-mode-hook ()
+  (setq scss-indent-level 4)
+  (setq tab-width 4)
+  (setq indent-tabs-mode t)
+  (setq scss-compile-at-save nil)
+  (auto-complete-mode))
+(add-hook 'scss-mode-hook 'flymake-sass-load)
+(add-hook 'scss-mode-hook 'my-scss-mode-hook)
+;; jsx ------------------------------------------------------
+;; (require 'jsx-mode)
+;; (defun my-jsx-mode-hock ()
+;;   (setq jsx-indent-level 2)
+;;   (setq jsx-use-flymake t))
+;; (add-hook 'jsx-mode-hook 'my-jsx-mode-hock)
+;; (add-to-list 'auto-mode-alist '("\\.jsx$" . jsx-mode))
 
 ;; ---------------------------------------------------------
 ;; server
