@@ -4,13 +4,21 @@
       (equal system-type 'ms-dos)))
 
 ;; ---------------------------------------------------------
+;; load-path
+;; ---------------------------------------------------------
+(setq load-path (append (list
+			 (expand-file-name "~/.emacs.d/elisp")
+			 )
+			load-path))
+
+;; ---------------------------------------------------------
 ;; 文字コード
 ;; ---------------------------------------------------------
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8)
-(setq default-file-name-coding-system 'cp932)
-(setq file-name-coding-system 'cp932)
-(setq locale-coding-system 'cp932-dos)
+;(setq default-file-name-coding-system 'cp932)
+;(setq file-name-coding-system 'cp932)
+;(setq locale-coding-system 'cp932-dos)
 
 ;; ---------------------------------------------------------
 ;; デフォルト設定
@@ -110,12 +118,12 @@
 (add-hook 'scss-mode-hook 'flymake-sass-load)
 (add-hook 'scss-mode-hook 'my-scss-mode-hook)
 ;; jsx ------------------------------------------------------
-;; (require 'jsx-mode)
-;; (defun my-jsx-mode-hock ()
-;;   (setq jsx-indent-level 2)
-;;   (setq jsx-use-flymake t))
-;; (add-hook 'jsx-mode-hook 'my-jsx-mode-hock)
-;; (add-to-list 'auto-mode-alist '("\\.jsx$" . jsx-mode))
+(require 'jsx-mode)
+(defun my-jsx-mode-hock ()
+  (setq jsx-indent-level 2)
+  (setq jsx-use-flymake t))
+(add-hook 'jsx-mode-hook 'my-jsx-mode-hock)
+(add-to-list 'auto-mode-alist '("\\.jsx$" . jsx-mode))
 
 ;; ---------------------------------------------------------
 ;; server
@@ -146,4 +154,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "ＭＳ ゴシック" :foundry "outline" :slant normal :weight normal :height 120 :width normal)))))
+ '(default ((t (:family "Ubuntu" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
