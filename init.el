@@ -54,7 +54,9 @@
 (defun my-html-mode-hook ()
   (setq sgml-basic-offset 4)
   (setq tab-width sgml-basic-offset)
-  (setq indent-tabs-mode nil))
+  (setq indent-tabs-mode nil)
+  (linum-mode t)
+  (auto-complete-mode))
 (add-hook 'html-mode-hook 'my-html-mode-hook)
 ;; js -------------------------------------------------------
 (defun my-js2-mode-hook ()
