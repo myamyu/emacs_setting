@@ -1,7 +1,14 @@
-;; win判定
-(defvar run-windows
-  (or (equal system-type 'windows-nt)
-      (equal system-type 'ms-dos)))
+;; ---------------------------------------------------------
+;; OS判定用
+;; ---------------------------------------------------------
+(defvar *run-unix*
+  (or (equal system-type 'gnu/linux)
+      (equal system-type 'darwin)
+      (equal system-type 'usg-unix-v)))
+(defvar *run-windows*
+  (and (null *run-unix*)
+       (or (equal system-type 'windows-nt)
+           (equal system-type 'ms-dos))))
 
 ;; ---------------------------------------------------------
 ;; load-path
@@ -16,16 +23,18 @@
 ;; ---------------------------------------------------------
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8)
-;(setq default-file-name-coding-system 'cp932)
-;(setq file-name-coding-system 'cp932)
-;(setq locale-coding-system 'cp932-dos)
+;; windowsのときは、このへんが必要
+(if *run-windows*
+    (progn
+      (setq default-file-name-coding-system 'cp932)
+      (setq file-name-coding-system 'cp932)
+      (setq locale-coding-system 'cp932-dos)))
 
 ;; ---------------------------------------------------------
 ;; デフォルト設定
 ;; ---------------------------------------------------------
-;; スペース4つ！
-(setq-default tab-width 4 indent-tabs-mode nil)
-
+(setq my-indent-width 4)
+(global-linum-mode t)
 ;; ---------------------------------------------------------
 ;; パッケージ設定
 ;; ---------------------------------------------------------
@@ -49,71 +58,60 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
 (ac-config-default)
-
+;; web ------------------------------------------------------
+(defun my-web-mode-hook ()
+  (setq web-mode-markup-indent-offset my-indent-width)
+  (setq web-mode-css-indent-offset my-indent-width)
+  (setq web-mode-code-indent-offset my-indent-width)
+  (setq tab-width my-indent-width)
+  (setq indent-tabs-mode t)
+  (auto-complete-mode))
+(add-hook 'web-mode-hook 'my-web-mode-hook)
 ;; html -----------------------------------------------------
 (defun my-html-mode-hook ()
-  (setq sgml-basic-offset 4)
-  (setq tab-width sgml-basic-offset)
-  (setq indent-tabs-mode nil)
-  (linum-mode t)
+  (setq sgml-basic-offset my-indent-width)
+  (setq tab-width my-indent-width)
+  (setq indent-tabs-mode t)
   (auto-complete-mode))
 (add-hook 'html-mode-hook 'my-html-mode-hook)
 ;; js -------------------------------------------------------
 (defun my-js2-mode-hook ()
-  (setq c-basic-offset 4)
-  (setq tab-width c-basic-offset)
-  (setq indent-tabs-mode t))
+  (setq c-basic-offset my-indent-width)
+  (setq tab-width my-indent-width)
+  (setq indent-tabs-mode t)
+  (auto-complete-mode))
 ;; jslintはnpm -gでinstallする必要があるかも
 (add-hook 'js2-mode-hook 'flymake-jslint-load)
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 ;; python ---------------------------------------------------
 (defun my-python-mode-hook ()
-  (setq py-indent-offset 4)
+  (setq py-indent-offset my-indent-width)
+  (setq tab-width my-indent-width)
   (highlight-indentation-mode t)
-  (highlight-indentation-current-column-mode t))
-  
+  (highlight-indentation-current-column-mode t)
+  (auto-complete-mode))
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 ;; php -----------------------------------------------------
-(require 'mmm-mode)
-(setq mmm-global-mode 'maybe)
-(mmm-add-classes
- '((html-php
-    :submode php-mode
-    :front "<\\?"
-    :back "\\?>")))
-(mmm-add-mode-ext-class nil "\\.ctp$" 'html-php)
-(add-to-list 'auto-mode-alist '("\\.ctp$" . html-mode))
-;; タブの改善
-(defun save-mmm-c-locals ()
-  (with-temp-buffer
-    (php-mode)
-    (dolist (v (buffer-local-variables))
-      (when (string-match "\\`c-" (symbol-name (car v)))
-	(add-to-list 'mmm-save-local-variables `(,(car v) nil, mmm-c-derived-modes))))))
-(save-mmm-c-locals)
 (defun my-php-mode-hook ()
   (setq whitespace-action (quote (auto-cleanup)))
-  (setq c-basic-offset 4)
-  (setq php-basic-offset 4)
-  (setq tab-width c-basic-offset)
-  (linum-mode t)
+  (setq php-basic-offset my-indent-width)
+  (setq tab-width my-indent-width)
   (auto-complete-mode))
 (add-hook 'php-mode-hook 'flymake-php-load)
 (add-hook 'php-mode-hook 'my-php-mode-hook)
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 ;; coffee ---------------------------------------------------
 (defun my-coffee-mode-hook ()
-  (setq coffee-tab-width 4)
-  (setq tab-width coffee-tab-width)
+  (setq coffee-tab-width my-indent-width)
+  (setq tab-width my-indent-width)
   (highlight-indentation-mode t)
-  (highlight-indentation-current-column-mode t))
+  (highlight-indentation-current-column-mode t)
+  (auto-complete-mode))
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
 (add-hook 'coffee-mode-hook 'my-coffee-mode-hook)
 ;; scss -----------------------------------------------------
 (defun my-scss-mode-hook ()
-  (setq scss-indent-level 4)
-  (setq tab-width 4)
+  (setq scss-indent-level my-indent-width)
+  (setq tab-width my-indent-width)
   (setq indent-tabs-mode t)
   (setq scss-compile-at-save nil)
   (auto-complete-mode))
@@ -125,6 +123,13 @@
   (setq jsx-indent-level 2)
   (setq jsx-use-flymake t))
 (add-hook 'jsx-mode-hook 'my-jsx-mode-hock)
+
+;; ---------------------------------------------------------
+;; 拡張子ごとのmode割り当て
+;; ---------------------------------------------------------
+(add-to-list 'auto-mode-alist '("\\.ctp$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . jsx-mode))
 
 ;; ---------------------------------------------------------
