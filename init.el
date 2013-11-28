@@ -34,7 +34,7 @@
 ;; デフォルト設定
 ;; ---------------------------------------------------------
 (setq my-indent-width 4)
-(global-linum-mode t)
+;(global-linum-mode t)
 ;; ---------------------------------------------------------
 ;; パッケージ設定
 ;; ---------------------------------------------------------
@@ -144,22 +144,37 @@
 (require 'server)
 (unless (server-running-p) (server-start))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; ---------------------------------------------------------
+;; 見た目
+;; ---------------------------------------------------------
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (tsdh-dark)))
  '(display-time-mode t)
  '(inhibit-startup-screen t)
  '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
+;; 背景
+(set-background-color "#330033")
+;; テキスト
+(set-foreground-color "#ccc0c0")
+
+(if *run-windows*
+    (progn
+      ;; 英語フォント
+      (set-face-attribute 'default nil
+			  :family "Verdana"
+			  :height 130)
+      ;; 日本語フォント
+      (set-fontset-font nil 'japanese-jisx0208
+			(font-spec :family "Meiryo UI"))))
+
+
+
+
+
+
+
+
+
+
+
