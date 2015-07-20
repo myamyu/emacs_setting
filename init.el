@@ -24,7 +24,8 @@
 ;; package
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; load-path
@@ -58,3 +59,31 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 
+;; auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
+(ac-config-default)
+
+;; 日本語入力
+(when (require 'skk nil t)
+  (global-set-key (kbd "C-x j") 'skk-auto-fill-mode)
+  (setq default-input-method "japanese-skk")
+  (require 'skk-study))
+(require 'ac-ja)
+(setq ac-sources (append ac-sources '(ac-source-dabbrev-ja)))
+
+;; js-mode
+;; (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+(add-hook 'js-mode-hook
+          '(lambda ()
+             (setq js-indent-level 2)
+             (setq js-basic-offset 2)
+             (auto-complete-mode)))
+;; js2-mode
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-hook 'js2-mode-hook
+          '(lambda ()
+             (setq js-indent-level 2)
+             (setq js2-basic-offset 2)
+             (auto-complete-mode)))
+             
