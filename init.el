@@ -73,14 +73,14 @@
 (setq ac-sources (append ac-sources '(ac-source-dabbrev-ja)))
 
 ;; js-mode
-;; (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (add-hook 'js-mode-hook
           '(lambda ()
              (setq js-indent-level 2)
              (setq js-basic-offset 2)
              (auto-complete-mode)))
 ;; js2-mode
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-hook 'js2-mode-hook
           '(lambda ()
              (setq js-indent-level 2)
