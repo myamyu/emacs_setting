@@ -25,7 +25,6 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; load-path
@@ -72,6 +71,12 @@
 (require 'ac-ja)
 (setq ac-sources (append ac-sources '(ac-source-dabbrev-ja)))
 
+;; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load 'flycheck
+  '(custom-set-variables
+    '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+
 ;; js-mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (add-hook 'js-mode-hook
@@ -86,4 +91,3 @@
              (setq js-indent-level 2)
              (setq js2-basic-offset 2)
              (auto-complete-mode)))
-             
