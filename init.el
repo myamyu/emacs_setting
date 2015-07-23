@@ -62,6 +62,12 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 
+;; projectile
+(require 'projectile)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
 ;; auto-complete
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
@@ -88,12 +94,12 @@
              (setq js-indent-level 2)
              (setq js-basic-offset 2)
              (auto-complete-mode)))
-;; js2-mode
-;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-hook 'js2-mode-hook
+;; css-mode
+(add-hook 'css-mode-hook
           '(lambda ()
-             (setq js-indent-level 2)
-             (setq js2-basic-offset 2)
+             (setq css-indent-offset 2)
+             (setq css-tab-mode 'indent)
+             (setq indent-tabs-mode t)
              (auto-complete-mode)))
 
 (provide 'init)
