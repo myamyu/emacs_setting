@@ -48,6 +48,8 @@
 
 ;; 見た目
 (custom-set-variables
+ '(global-hl-line-mode t)
+ '(global-linum-mode t)
  '(column-number-mode t)
  '(display-time-mode t)
  '(inhibit-startup-screen t)
@@ -56,6 +58,8 @@
     (progn
       (set-face-attribute 'default nil :family "Consolas" :height 130)
       (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Meiryo UI"))))
+
+
 
 ;; key
 (global-set-key (kbd "M-x") 'helm-M-x)
