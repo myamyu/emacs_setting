@@ -97,6 +97,8 @@
           '(lambda ()
              (setq js-indent-level 2)
              (setq js-basic-offset 2)
+             (highlight-indentation-mode)
+             (highlight-indentation-current-column-mode)
              (auto-complete-mode)))
 ;; css-mode
 (add-hook 'css-mode-hook
