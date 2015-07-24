@@ -2,14 +2,23 @@
 ;;; Commentary:
 ;;; Code:
 
-;; server
-(add-hook 'server-visit-hook
-	  (lambda ()
-	    (set-terminal-coding-system 'utf-8)
-	    (set-keyboard-coding-system 'utf-8)))
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+;; package
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+;; load-path
+(setq load-path
+      (append
+       (list
+        (expand-file-name "~/.emacs.d/elisp"))
+       load-path))
+
+;; key
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
 
 ;; OS判定
 (defvar *run-unix*
@@ -25,18 +34,36 @@
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8)
 
-;; package
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
+;; 日本語入力
+(when (require 'skk nil t)
+  (global-set-key (kbd "C-x j") 'skk-auto-fill-mode)
+  (setq default-input-method "japanese-skk")
+  (require 'skk-study))
+(require 'ac-ja)
+(setq ac-sources (append ac-sources '(ac-source-dabbrev-ja)))
 
-;; load-path
-(setq load-path
-      (append
-       (list
-        (expand-file-name "~/.emacs.d/elisp"))
-       load-path))
+;; 見た目
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(custom-safe-themes
+   (quote
+    ("c582c1d99904ddc0677f87ba7eb6596cf9321a7e6233857dc4bd6ae587893194" default)))
+ '(display-time-mode t)
+ '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
+ '(global-hl-line-mode t)
+ '(global-linum-mode t)
+ '(inhibit-startup-screen t)
+ '(tool-bar-mode nil))
+
+;; フォント
+(if *run-win*
+    (progn
+      (set-face-attribute 'default nil :family "Consolas" :height 130)
+      (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Meiryo UI"))))
 
 ;; インデントなど
 (setq-default
@@ -45,26 +72,6 @@
  c-tab-always-indent t
  c-auto-newline t
  c-hungry-delete-key t)
-
-;; 見た目
-(custom-set-variables
- '(global-hl-line-mode t)
- '(global-linum-mode t)
- '(column-number-mode t)
- '(display-time-mode t)
- '(inhibit-startup-screen t)
- '(tool-bar-mode nil))
-(if *run-win*
-    (progn
-      (set-face-attribute 'default nil :family "Consolas" :height 130)
-      (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Meiryo UI"))))
-
-
-
-;; key
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
 
 ;; projectile
 (require 'projectile)
@@ -76,14 +83,6 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
 (ac-config-default)
-
-;; 日本語入力
-(when (require 'skk nil t)
-  (global-set-key (kbd "C-x j") 'skk-auto-fill-mode)
-  (setq default-input-method "japanese-skk")
-  (require 'skk-study))
-(require 'ac-ja)
-(setq ac-sources (append ac-sources '(ac-source-dabbrev-ja)))
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -107,6 +106,15 @@
              (setq css-tab-mode 'indent)
              (setq indent-tabs-mode t)
              (auto-complete-mode)))
+
+;; server
+(add-hook 'server-visit-hook
+	  (lambda ()
+	    (set-terminal-coding-system 'utf-8)
+	    (set-keyboard-coding-system 'utf-8)))
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 (provide 'init)
 ;;; init.el ends here
