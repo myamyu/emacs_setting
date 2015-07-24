@@ -44,14 +44,7 @@
 
 ;; 見た目
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(custom-safe-themes
-   (quote
-    ("c582c1d99904ddc0677f87ba7eb6596cf9321a7e6233857dc4bd6ae587893194" default)))
  '(display-time-mode t)
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
  '(global-hl-line-mode t)
