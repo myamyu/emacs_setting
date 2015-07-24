@@ -50,6 +50,7 @@
  '(global-hl-line-mode t)
  '(global-linum-mode t)
  '(inhibit-startup-screen t)
+ '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 
 ;; フォント
