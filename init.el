@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; init.el --- emacsの設定
 ;;; Commentary:
 ;;; Code:
 
@@ -17,8 +17,11 @@
 
 ;; key
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c o") 'org-capture)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x j") 'open-junk-file)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ;; OS判定
 (defvar *run-unix*
@@ -36,7 +39,6 @@
 
 ;; 日本語入力
 (when (require 'skk nil t)
-  (global-set-key (kbd "C-x j") 'skk-auto-fill-mode)
   (setq default-input-method "japanese-skk")
   (require 'skk-study))
 (require 'ac-ja)
@@ -66,6 +68,17 @@
  c-tab-always-indent t
  c-auto-newline t
  c-hungry-delete-key t)
+
+;; org-mode, junk
+(require 'org)
+(require 'open-junk-file)
+(setq org-directory "~/org-memo/")
+(defvar junk-directory (concat org-directory "junk/"))
+(setq org-default-notes-file (concat org-directory "memo.org"))
+(setq org-agenda-files (list
+                        org-directory
+                        junk-directory))
+(setq open-junk-file-format (concat junk-directory "%Y-%m%d.org"))
 
 ;; projectile
 (require 'projectile)
