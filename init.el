@@ -113,7 +113,13 @@
              (setq css-tab-mode 'indent)
              (setq indent-tabs-mode t)
              (auto-complete-mode)))
-
+;; web-mode
+(add-to-list 'auto-mode-alist '("\\.html?$" . web-mode))
+(add-hook 'web-mode-hook
+          '(lambda ()
+             (setq web-mode-markup-indent-offset 2)
+             (setq indent-tabs-mode t)
+             (auto-complete-mode)))
 ;; server
 (add-hook 'server-visit-hook
 	  (lambda ()
