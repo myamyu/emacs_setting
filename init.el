@@ -69,6 +69,10 @@
  c-auto-newline t
  c-hungry-delete-key t)
 
+;; ignoramus
+(require 'ignoramus)
+(ignoramus-setup)
+
 ;; org-mode, junk
 (require 'org)
 (require 'open-junk-file)
