@@ -65,6 +65,7 @@
 (setq-default
  default-tab-width 2
  indent-tabs-mode nil
+ c-basic-offset 2
  c-tab-always-indent t
  c-auto-newline t
  c-hungry-delete-key t)
@@ -110,6 +111,16 @@
              (highlight-indentation-mode)
              (highlight-indentation-current-column-mode)
              (auto-complete-mode)))
+(add-hook 'js2-mode-hook
+          '(lambda ()
+             (setq js2-mirror-mode t)
+             (setq js2-auto-indent-p t)
+             (setq js2-enter-indents-newline t)
+             (setq js2-bounce-indent-flag nil)
+             (highlight-indentation-mode)
+             (highlight-indentation-current-column-mode)
+             (auto-complete-mode)))
+             
 ;; css-mode
 (add-hook 'css-mode-hook
           '(lambda ()
