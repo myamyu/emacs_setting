@@ -135,6 +135,12 @@
              (setq web-mode-markup-indent-offset 2)
              (setq indent-tabs-mode t)
              (auto-complete-mode)))
+
+;; helm-hatena
+(require 'helm-hatena-bookmark)
+(setq helm-hatena-bookmark:username "myamyugon")
+(helm-hatena-bookmark:initialize)
+
 ;; server
 (add-hook 'server-visit-hook
 	  (lambda ()
