@@ -87,7 +87,8 @@
 
 ;; projectile
 (require 'projectile)
-(projectile-global-mode)
+(custom-set-variables '(projectile-enable-caching t))
+(projectile-global-mode t)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
