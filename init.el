@@ -122,7 +122,16 @@
              (highlight-indentation-mode)
              (highlight-indentation-current-column-mode)
              (auto-complete-mode)))
-             
+
+;; scss-mode
+(add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
+(add-hook 'scss-mode-hook
+          '(lambda ()
+             (setq css-indent-offset 2)
+             (setq css-tab-mode 'indent)
+             (setq indent-tabs-mode t)
+             (auto-complete-mode)))
+
 ;; css-mode
 (add-hook 'css-mode-hook
           '(lambda ()
