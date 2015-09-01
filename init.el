@@ -18,6 +18,7 @@
 ;; key
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c i") 'helm-imenu)
 (global-set-key (kbd "C-c o") 'org-capture)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x j") 'open-junk-file)
@@ -104,7 +105,7 @@
     '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
 
 ;; js-mode
-(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-hook 'js-mode-hook
           '(lambda ()
              (setq js-indent-level 2)
