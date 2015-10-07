@@ -6,36 +6,38 @@ package-list-packagesのinstalled, built-inのコピペです。
 ```
   ac-dabbrev         20130906.518  installed             auto-complete.el source for dabbrev
   ac-helm            20140919.917  installed             Helm interface for auto-complete
-  ac-html            20150828.2212 installed             auto complete source for html tags and attributes
+  ac-html            20151005.31   installed             auto complete source for html tags and attributes
   ac-ja              0.0.1         installed             auto-complete-mode source for Japanese
   ac-js2             20140906.442  installed             Auto-complete source for Js2-mode, with navigation
   ac-skk             20141229.1719 installed             auto-complete-mode source for DDSKK a.k.a Japanese input method
-  async              20150818.1154 installed             Asynchronous processing in Emacs
+  async              20150909.2257 installed             Asynchronous processing in Emacs
   auto-compile       20150731.545  installed             automatically compile Emacs Lisp libraries
   auto-complete      20150618.1949 installed             Auto Completion for GNU Emacs
   ccc                20150112.533  installed             buffer local cursor color control library
   cdb                20141201.754  installed             constant database (cdb) reader for Emacs Lisp
-  cider              20150831.715  installed             Clojure Interactive Development Environment that Rocks
-  clojure-mode       20150804.1311 installed             Major mode for Clojure code
-  coffee-mode        20150602.2205 installed             Major mode to edit CoffeeScript files in Emacs
-  dash               20150829.433  installed             A modern list library for Emacs
-  ddskk              20150817.502  installed             Simple Kana to Kanji conversion program.
+  cider              20151006.714  installed             Clojure Interactive Development Environment that Rocks
+  clojure-mode       20151001.2255 installed             Major mode for Clojure code
+  coffee-mode        20150930.859  installed             Major mode to edit CoffeeScript files in Emacs
+  company            20151006.2013 installed             Modular text completion framework
+  company-web        20150623.533  installed             Company version of ac-html, complete for web,html,emmet,jade,slim modes
+  dash               20151006.221  installed             A modern list library for Emacs
+  ddskk              20150912.1820 installed             Simple Kana to Kanji conversion program.
   epl                20150517.433  installed             Emacs Package Library
   f                  20150605.927  installed             Modern API for working with files and directories
-  flycheck           20150831.1343 installed             On-the-fly syntax checking
+  flycheck           20151006.1321 installed             On-the-fly syntax checking
   flycheck-clojure   20150831.631  installed             Flycheck: Clojure support
-  flycheck-elm       20150710.1241 installed             Flycheck support for the elm language
+  flycheck-elm       20150928.503  installed             Flycheck support for the elm language
   flycheck-pos-tip   20140606.510  installed             Flycheck errors display in tooltip
-  gh                 20150126.1125 installed             A GitHub library for Emacs
-  gh-md              20150827.2057 installed             Render markdown using the Github api
-  gist               20150505.1341 installed             Emacs integration for gist.github.com
-  git-commit         20150824.1010 installed             Edit Git commit messages
-  git-gutter         20150708.1021 installed             Port of Sublime Text plugin GitGutter
+  gh                 20150906.848  installed             A GitHub library for Emacs
+  gh-md              20150902.623  installed             Render markdown using the Github api
+  gist               20150906.954  installed             Emacs integration for gist.github.com
+  git-commit         20151002.1417 installed             Edit Git commit messages
+  git-gutter         20150915.50   installed             Port of Sublime Text plugin GitGutter
   gitconfig-mode     20150330.1048 installed             Major mode for editing .gitconfig files
   google             20140330.856  installed             Emacs interface to the Google API
   haml-mode          20150508.2011 installed             Major mode for editing Haml files
-  helm               20150901.131  installed             Helm is an Emacs incremental and narrowing framework
-  helm-core          20150831.933  installed             Development files for Helm
+  helm               20151006.2114 installed             Helm is an Emacs incremental and narrowing framework
+  helm-core          20151004.958  installed             Development files for Helm
   helm-css-scss      20140626.1725 installed             CSS/SCSS/LESS Selectors with helm interface
   helm-flycheck      20140915.752  installed             Show flycheck errors with helm
   helm-gist          20120819.1735 installed             helm-sources and some utilities for gist.
@@ -45,38 +47,42 @@ package-list-packagesのinstalled, built-inのコピペです。
   helm-google        20141228.340  installed             Emacs Helm Interface for quick Google searches
   helm-hatena-boo... 20150615.840  installed             Hatena::Bookmark with helm interface
   helm-package       20140108.2223 installed             Listing ELPA packages with helm interface
-  helm-projectile    20150831.1127 installed             Helm integration for Projectile
+  helm-projectile    20150917.551  installed             Helm integration for Projectile
+  highlight-inden... 20150307.208  installed             Minor modes for highlighting indentation
   hyde               20150615.1025 installed             Major mode to help create and manage Jekyll blogs
   ignoramus          20150216.1342 installed             Ignore backups, build files, et al.
   jekyll-modes       20141117.514  installed             Major modes (markdown and HTML) for authoring Jekyll content
-  js2-mode           20150825.1256 installed             Improved JavaScript editing mode
+  js2-mode           20150911.116  installed             Improved JavaScript editing mode
   let-alist          1.0.4         installed             Easily let-bind values of an assoc-list by their names
   logito             20120225.1255 installed             logging library for Emacs
-  magit              20150830.1615 installed             A Git porcelain inside Emacs
-  magit-popup        20150824.1010 installed             Define prefix-infix-suffix command combos
-  markdown-mode      20150828.651  installed             Emacs Major mode for Markdown-formatted text files
+  magit              20151006.1359 installed             A Git porcelain inside Emacs
+  magit-popup        20151006.1123 installed             Define prefix-infix-suffix command combos
+  markdown-mode      20150910.836  installed             Emacs Major mode for Markdown-formatted text files
   markdown-mode+     20120829.510  installed             extra functions for markdown-mode
-  ob-http            20150625.557  installed             http request in org-mode babel
+  ob-http            20150924.553  installed             http request in org-mode babel
   ob-kotlin          20150312.614  installed             org-babel functions for kotlin evaluation
   open-junk-file     20130131.720  installed             Open a junk (memo) file to try-and-error
-  org                20150831      installed             Outline-based notes management and organizer
+  org                20151005      installed             Outline-based notes management and organizer
   packed             20150723.438  installed             package manager agnostic Emacs Lisp package utilities
   pcache             20150125.1653 installed             persistent caching for Emacs
   pkg-info           20150517.443  installed             Information about packages
-  polymode           20150729.734  installed             Versatile multiple modes with extensive literate programming support
+  polymode           20150929.118  installed             Versatile multiple modes with extensive literate programming support
   popup              20150626.711  installed             Visual Popup User Interface
-  projectile         20150831.1127 installed             Manage and navigate projects in Emacs easily
+  projectile         20150911.844  installed             Manage and navigate projects in Emacs easily
   queue              0.1.1         installed             Queue data structure
-  s                  20150825.50   installed             The long lost Emacs string manipulation library.
+  request            20140316.417  installed             Compatible layer for URL request in Emacs
+  s                  20150924.406  installed             The long lost Emacs string manipulation library.
   sass-mode          20150508.2012 installed             Major mode for editing Sass files
   scss-mode          20150107.1400 installed             Major mode for editing SCSS files
   simple-httpd       20150430.1755 installed             pure elisp HTTP server
-  skewer-mode        20150422.1818 installed             live browser JavaScript, CSS, and HTML interaction
+  skewer-mode        20150914.1304 installed             live browser JavaScript, CSS, and HTML interaction
   spinner            1.4           installed             Add spinners and progress-bars to the mode-line for ongoing operations
+  tide               20150929.2130 installed             Typescript Interactive Development Environment
   tinysegmenter      20141124.213  installed             Super compact Japanese tokenizer in Javascript ported to emacs lisp
+  typescript-mode    20150830.1828 installed             Major mode for editing typescript
   web-completion-... 20150623.333  installed             Shared completion data for ac-html and company-web
-  web-mode           20150831.1145 installed             major mode for editing web templates
-  with-editor        20150829.516  installed             Use the Emacsclient as $EDITOR
+  web-mode           20151005.2326 installed             major mode for editing web templates
+  with-editor        20150929.1427 installed             Use the Emacsclient as $EDITOR
   allout             2.3           built-in              extensive outline mode for use alone and with other modes
   allout-widgets     1.0           built-in              Visually highlight allout outline structure.
   ansi-color         3.4.2         built-in              translate ANSI escape sequences into faces
