@@ -97,6 +97,9 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
 (ac-config-default)
+(define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
+(define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
+(define-key ac-complete-mode-map (kbd "<tab>") 'ac-complete)
 
 ;; company
 (require 'company)
@@ -127,12 +130,15 @@
              (auto-complete-mode)))
 (add-hook 'js2-mode-hook
           '(lambda ()
+             (flycheck-mode t)
+             (setq flycheck-check-syntax-automatically '(save mode-enabled))
              (setq js2-mirror-mode t)
              (setq js2-auto-indent-p t)
              (setq js2-enter-indents-newline t)
              (setq js2-bounce-indent-flag nil)
              (highlight-indentation-mode)
              (highlight-indentation-current-column-mode)
+             (ac-js2-mode)
              (auto-complete-mode)))
 
 ;; scss-mode
