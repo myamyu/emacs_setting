@@ -50,11 +50,18 @@
  '(column-number-mode t)
  '(display-time-mode t)
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
- '(global-hl-line-mode t)
- '(global-linum-mode t)
  '(inhibit-startup-screen t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
+
+;; hi-line
+(require 'hl-line)
+(defun global-hl-line-timer-function ()
+  "Hilight line timer."
+  (global-hl-line-unhighlight-all)
+  (let ((global-hl-line-mode t))
+    (global-hl-line-highlight)))
+(run-with-idle-timer 0.03 t 'global-hl-line-timer-function)
 
 ;; フォント
 (if *run-win*
@@ -119,15 +126,12 @@
   '(custom-set-variables
     '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
 
+;; undo-tree
+(require 'undo-tree)
+(global-undo-tree-mode)
+
 ;; js-mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-hook 'js-mode-hook
-          '(lambda ()
-             (setq js-indent-level 2)
-             (setq js-basic-offset 2)
-             (highlight-indentation-mode)
-             (highlight-indentation-current-column-mode)
-             (auto-complete-mode)))
 (add-hook 'js2-mode-hook
           '(lambda ()
              (flycheck-mode t)
@@ -136,8 +140,6 @@
              (setq js2-auto-indent-p t)
              (setq js2-enter-indents-newline t)
              (setq js2-bounce-indent-flag nil)
-             (highlight-indentation-mode)
-             (highlight-indentation-current-column-mode)
              (ac-js2-mode)
              (auto-complete-mode)))
 
@@ -174,8 +176,6 @@
              (flycheck-mode t)
              (setq flycheck-check-syntax-automatically '(save mode-enabled))
              (eldoc-mode t)
-             (highlight-indentation-mode)
-             (highlight-indentation-current-column-mode)
              (setq typescript-indent-level 2)
              (setq typescript-auto-indent-flag t)
              (company-mode)))
