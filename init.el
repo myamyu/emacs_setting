@@ -2,18 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
+
+;; load-path
+(add-to-list 'load-path (locate-user-emacs-file "elisp/"))
+
 ;; package
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
-
-;; load-path
-(setq load-path
-      (append
-       (list
-        (expand-file-name "~/.emacs.d/elisp"))
-       load-path))
 
 ;; key
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -102,7 +101,7 @@
 
 ;; auto-complete
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
+(add-to-list 'ac-dictionary-directories (locate-user-emacs-file "dict"))
 (ac-config-default)
 (define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
 (define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
