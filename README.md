@@ -30,8 +30,9 @@ emacsの設定
 
 ```
 ;; *scratch*で実行
-(require 'my-package-install)
-(my:install)
+(progn
+  (require 'my-package-install)
+  (my:install))
 ```
 
 ### projectileを導入
