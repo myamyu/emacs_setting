@@ -23,6 +23,17 @@ emacsの設定
 新たにやること
 ------------
 
+### 新しい環境対応
+
+あたらしいPCとかVMとかで、すぐにいろいろ入れられるように、
+入れたパッケージはelisp/my-package-install.elにまとめる。
+
+```
+;; *scratch*で実行
+(require 'my-package-install)
+(my:install)
+```
+
 ### projectileを導入
 
 Bracketsを使っていて便利なのがprojectの切り替え。
