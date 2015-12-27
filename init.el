@@ -5,6 +5,11 @@
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
+;;; *.~ とかのバックアップファイルを作らない
+(setq make-backup-files nil)
+;;; .#* とかのバックアップファイルを作らない
+(setq auto-save-default nil)
+
 ;; load-path
 (add-to-list 'load-path (locate-user-emacs-file "elisp/"))
 
@@ -91,6 +96,7 @@
                         org-directory
                         junk-directory))
 (setq open-junk-file-format (concat junk-directory "%Y-%m%d.org"))
+(setq org-startup-folded nil)
 
 ;; projectile
 (require 'projectile)
@@ -98,6 +104,10 @@
 (projectile-global-mode t)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+(add-to-list 'projectile-globally-ignored-directories "elpa")
+(add-to-list 'projectile-globally-ignored-directories ".cache")
+(add-to-list 'projectile-globally-ignored-directories "node_modules")
+(add-to-list 'projectile-globally-ignored-directories ".sass-cache")
 
 ;; auto-complete
 (require 'auto-complete-config)
@@ -116,8 +126,14 @@
 (define-key company-active-map (kbd "C-h") nil)
 (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
 (define-key company-active-map (kbd "M-d") 'company-show-doc-buffer)
-(setq company-minimum-prefix-length 1)
+(setq company-idle-delay 0.2)
+(setq company-minimum-prefix-length 2)
 (setq company-selection-wrap-around t)
+(setq company-auto-complete t)
+(setq company-global-modes t)
+(setq company-show-numbers t)
+(add-to-list 'company-backends '(company-tern :with company-dabbrev-code))
+(add-to-list 'company-backends 'ac-js2-company)
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -133,14 +149,14 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-hook 'js2-mode-hook
           '(lambda ()
+             (tern-mode t)
              (flycheck-mode t)
              (setq flycheck-check-syntax-automatically '(save mode-enabled))
              (setq js2-mirror-mode t)
              (setq js2-auto-indent-p t)
              (setq js2-enter-indents-newline t)
              (setq js2-bounce-indent-flag nil)
-             (ac-js2-mode)
-             (auto-complete-mode)))
+             (company-mode)))
 
 ;; scss-mode
 (add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))

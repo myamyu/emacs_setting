@@ -27,6 +27,8 @@
       ac-R
       company
       company-web
+      tern
+      tern-auto-complete
       ;; coding mode
       clojure-mode
       coffee-mode
