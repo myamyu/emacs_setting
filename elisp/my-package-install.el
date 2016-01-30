@@ -40,6 +40,10 @@
       typescript-mode
       web-mode
       yaml-mode
+      python-mode
+      elixir-mode
+      jade-mode
+      qml-modex
       ;; flycheck
       flycheck
       flycheck-clojure
@@ -81,6 +85,7 @@
       cider
       dash
       ddskk
+      elang
       epl
       google
       markdown-mode
