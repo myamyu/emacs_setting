@@ -25,6 +25,7 @@
       ac-js2
       ac-skk
       ac-R
+      ac-python
       company
       company-web
       tern
@@ -44,6 +45,8 @@
       elixir-mode
       jade-mode
       qml-modex
+      ruby-electric
+      ruby-block
       ;; flycheck
       flycheck
       flycheck-clojure

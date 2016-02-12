@@ -194,6 +194,26 @@
              (setq typescript-indent-level 2)
              (setq typescript-auto-indent-flag t)
              (company-mode)))
+;; python-mode
+(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (setq imenu-create-index-function 'python-imenu-create-index)
+             (setq indent-tabs-mode nil)
+             (setq indent-level 4)
+             (setq python-indent 4)
+             (setq python-indent-offset 4)
+             (setq tab-width 4)
+             (auto-complete-mode)))
+;; ruby-mode
+(require 'ruby-block)
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (ruby-electric-mode t)
+             (ruby-block-mode t)
+             (setq ruby-block-highlight-toggle t)
+             (flycheck-mode t)))
 
 ;; helm-hatena
 (require 'helm-hatena-bookmark)
