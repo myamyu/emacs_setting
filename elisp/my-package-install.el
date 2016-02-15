@@ -44,7 +44,7 @@
       python-mode
       elixir-mode
       jade-mode
-      qml-modex
+      qml-mode
       ruby-electric
       ruby-block
       ;; flycheck
