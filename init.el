@@ -12,6 +12,7 @@
 
 ;; load-path
 (add-to-list 'load-path (locate-user-emacs-file "elisp/"))
+(add-to-list 'load-path (locate-user-emacs-file "el-get/"))
 
 ;; package
 (require 'package)
@@ -21,7 +22,6 @@
 
 ;; el-get
 (require 'el-get)
-(add-to-list 'load-path (locate-user-emacs-file "el-get"))
 (setq el-get-dir (locate-user-emacs-file ""))
 
 ;; key
@@ -58,10 +58,11 @@
 (custom-set-variables
  '(column-number-mode t)
  '(display-time-mode t)
- '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
  '(inhibit-startup-screen t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
+
+
 
 ;; hi-line
 (require 'hl-line)
@@ -142,9 +143,8 @@
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(eval-after-load 'flycheck
-  '(custom-set-variables
-    '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+(with-eval-after-load 'flycheck
+  (flycheck-pos-tip-mode))
 
 ;; undo-tree
 (require 'undo-tree)
