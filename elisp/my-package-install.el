@@ -47,6 +47,8 @@
       qml-modex
       ruby-electric
       ruby-block
+      alchemist
+      elixir-mix
       ;; flycheck
       flycheck
       flycheck-clojure

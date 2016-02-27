@@ -19,6 +19,11 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
+;; el-get
+(require 'el-get)
+(add-to-list 'load-path (locate-user-emacs-file "el-get"))
+(setq el-get-dir (locate-user-emacs-file ""))
+
 ;; key
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-c a") 'org-agenda)
