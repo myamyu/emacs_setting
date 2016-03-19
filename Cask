@@ -1,0 +1,85 @@
+(source gnu)
+(source melpa)
+(source marmalade)
+
+;; org
+(depends-on "org")
+(depends-on "open-junk-file")
+
+;; project
+(depends-on "projectile")
+(depends-on "projectile-codesearch")
+
+;; auto complete
+(depends-on "auto-complete")
+(depends-on "ac-dabbrev")
+(depends-on "ac-helm")
+(depends-on "ac-html")
+(depends-on "ac-ja")
+(depends-on "ac-js2")
+(depends-on "ac-skk")
+(depends-on "ac-python")
+(depends-on "company")
+(depends-on "company-web")
+
+;; coding mode
+(depends-on "clojure-mode")
+(depends-on "coffee-mode")
+(depends-on "haml-mode")
+(depends-on "js2-mode")
+(depends-on "sass-mode")
+(depends-on "scss-mode")
+(depends-on "tide")
+(depends-on "typescript-mode")
+(depends-on "web-mode")
+(depends-on "yaml-mode")
+(depends-on "python-mode")
+(depends-on "jade-mode")
+(depends-on "ruby-electric")
+(depends-on "ruby-block")
+(depends-on "elixir-mode")
+(depends-on "alchemist")
+(depends-on "elixir-mix")
+(depends-on "hyde")
+(depends-on "jekyll-modes")
+
+;; flycheck
+(depends-on "flycheck")
+(depends-on "flycheck-pos-tip")
+
+;; git, github
+(depends-on "gh")
+(depends-on "gh-md")
+(depends-on "gist")
+(depends-on "git-commit")
+(depends-on "git-gutter")
+(depends-on "gitconfig-mode")
+(depends-on "gitignore-mode")
+(depends-on "ignoramus")
+(depends-on "magit")
+(depends-on "magit-popup")
+
+;; helm
+(depends-on "helm")
+(depends-on "helm-ag")
+(depends-on "helm-core")
+(depends-on "helm-css-scss")
+(depends-on "helm-flycheck")
+(depends-on "helm-git")
+(depends-on "helm-git-files")
+(depends-on "helm-git-grep")
+(depends-on "helm-ls-git")
+(depends-on "helm-projectile")
+
+;; etc
+(depends-on "anzu")
+(depends-on "auto-compile")
+(depends-on "cider")
+(depends-on "dash")
+(depends-on "ddskk")
+(depends-on "elang")
+(depends-on "epl")
+(depends-on "markdown-mode")
+(depends-on "markdown-mode+")
+(depends-on "request")
+(depends-on "undo-tree")

@@ -5,24 +5,16 @@
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
+;; cask
+(require 'cask "~/.cask/cask.el")
+(setq user_bundle (cask-initialize "~/.emacs.d"))
+;;(cask-install user_bundle)
+;;(cask-update  user_bundle)
+
 ;;; *.~ とかのバックアップファイルを作らない
 (setq make-backup-files nil)
 ;;; .#* とかのバックアップファイルを作らない
 (setq auto-save-default nil)
-
-;; load-path
-(add-to-list 'load-path (locate-user-emacs-file "elisp/"))
-(add-to-list 'load-path (locate-user-emacs-file "el-get/"))
-
-;; package
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
-
-;; el-get
-(require 'el-get)
-(setq el-get-dir (locate-user-emacs-file ""))
 
 ;; key
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -61,8 +53,6 @@
  '(inhibit-startup-screen t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
-
-
 
 ;; hi-line
 (require 'hl-line)
@@ -219,20 +209,6 @@
              (ruby-block-mode t)
              (setq ruby-block-highlight-toggle t)
              (flycheck-mode t)))
-
-;; helm-hatena
-(require 'helm-hatena-bookmark)
-(setq helm-hatena-bookmark:username "myamyugon")
-(helm-hatena-bookmark:initialize)
-
-;; server
-(add-hook 'server-visit-hook
-	  (lambda ()
-	    (set-terminal-coding-system 'utf-8)
-	    (set-keyboard-coding-system 'utf-8)))
-(require 'server)
-(unless (server-running-p)
-  (server-start))
 
 (provide 'init)
 ;;; init.el ends here

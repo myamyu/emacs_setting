@@ -12,3 +12,4 @@ eshell/
 request/curl-cookie-jar
 bookmarks
 tramp
+.cask/
