@@ -40,9 +40,24 @@
 (prefer-coding-system 'utf-8)
 
 ;; 日本語入力
-(when (require 'skk nil t)
-  (setq default-input-method "japanese-skk")
-  (require 'skk-study))
+(require 'skk)
+(setq default-input-method "japanese-skk")
+(setq skk-user-directory "~/.emacs.d/skk")
+(setq skk-jisyo "~/.emacs.d/skk/jisyo")
+;; 変換時に注釈 (annotation) を表示する
+(setq skk-show-annotation t)
+;; 変換候補をtooltipにする
+(setq skk-show-tooltip t)
+(setq skk-show-inline t)
+;; 送り仮名が厳密に正しい候補を優先して表示する
+(setq skk-henkan-strict-okuri-precedence t)
+;; 辞書登録のとき、余計な送り仮名を送らないようにする
+(setq skk-check-okurigana-on-touroku 'auto)
+;; 動的な補完を使う
+(setq skk-dcomp-activate t)
+;; 動的補完で候補を複数表示する
+(setq skk-dcomp-multiple-activate t)
+(require 'skk-study)
 (require 'ac-ja)
 (setq ac-sources (append ac-sources '(ac-source-dabbrev-ja)))
 
@@ -100,10 +115,12 @@
 (projectile-global-mode t)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
-(add-to-list 'projectile-globally-ignored-directories "elpa")
-(add-to-list 'projectile-globally-ignored-directories ".cache")
-(add-to-list 'projectile-globally-ignored-directories "node_modules")
-(add-to-list 'projectile-globally-ignored-directories ".sass-cache")
+(setq projectile-globally-ignored-directories
+      (append projectile-globally-ignored-directories '(".git"
+							".cache"
+							"node_modules"
+							".sass-cache")))
+(projectile-global-mode 1)
 
 ;; auto-complete
 (require 'auto-complete-config)
