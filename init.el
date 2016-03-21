@@ -5,12 +5,6 @@
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
-;; cask
-(require 'cask "~/.cask/cask.el")
-(setq user_bundle (cask-initialize "~/.emacs.d"))
-;;(cask-install user_bundle)
-;;(cask-update  user_bundle)
-
 ;;; *.~ とかのバックアップファイルを作らない
 (setq make-backup-files nil)
 ;;; .#* とかのバックアップファイルを作らない
@@ -124,29 +118,13 @@
 
 ;; auto-complete
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories (locate-user-emacs-file "dict"))
-(ac-config-default)
-(define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
-(define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
-(define-key ac-complete-mode-map (kbd "<tab>") 'ac-complete)
+(add-to-list 'ac-dictionary-directories (locate-user-emacs-file "ac-dict/"))
 
-;; company
-(require 'company)
-(define-key company-active-map (kbd "M-n") nil)
-(define-key company-active-map (kbd "M-p") nil)
-(define-key company-active-map (kbd "C-n") 'company-select-next)
-(define-key company-active-map (kbd "C-p") 'company-select-previous)
-(define-key company-active-map (kbd "C-h") nil)
-(define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
-(define-key company-active-map (kbd "M-d") 'company-show-doc-buffer)
-(setq company-idle-delay 0.2)
-(setq company-minimum-prefix-length 2)
-(setq company-selection-wrap-around t)
-(setq company-auto-complete t)
-(setq company-global-modes t)
-(setq company-show-numbers t)
-(add-to-list 'company-backends '(company-tern :with company-dabbrev-code))
-(add-to-list 'company-backends 'ac-js2-company)
+(ac-config-default)
+(global-auto-complete-mode t)
+(setq ac-auto-show-menu 0.3)
+(setq ac-use-menu-map t) ;; C-n/C-pで選択
+(define-key ac-complete-mode-map (kbd "<tab>") 'ac-complete)
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -161,14 +139,13 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-hook 'js2-mode-hook
           '(lambda ()
-             (tern-mode t)
              (flycheck-mode t)
              (setq flycheck-check-syntax-automatically '(save mode-enabled))
              (setq js2-mirror-mode t)
              (setq js2-auto-indent-p t)
              (setq js2-enter-indents-newline t)
              (setq js2-bounce-indent-flag nil)
-             (company-mode)))
+             (auto-complete-mode)))
 
 ;; scss-mode
 (add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
@@ -205,7 +182,7 @@
              (eldoc-mode t)
              (setq typescript-indent-level 2)
              (setq typescript-auto-indent-flag t)
-             (company-mode)))
+             (auto-complete-mode)))
 ;; python-mode
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (add-hook 'python-mode-hook
