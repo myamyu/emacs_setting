@@ -5,6 +5,10 @@
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
+;; cask
+(require 'cask "~/.cask/cask.el")
+(cask-initialize "~/.emacs.d")
+
 ;;; *.~ とかのバックアップファイルを作らない
 (setq make-backup-files nil)
 ;;; .#* とかのバックアップファイルを作らない
