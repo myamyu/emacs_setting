@@ -21,6 +21,20 @@ http://cask.readthedocs.org/en/latest/guide/installation.html
 curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
 ```
 
+### caskコマンドでemacsが落ちる場合
+
+Cask APIでcaskを操作する。  
+http://cask.readthedocs.org/en/latest/dev/api.html
+
+```
+(progn 
+  (require 'cask "~/.cask/cask.el")
+  (setq user_bundle (cask-initialize "~/.emacs.d"))
+  (cask-install user_bundle)
+  (cask-update  user_bundle))
+```
+
+
 projectileを導入
 ----------------
 
